@@ -161,7 +161,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 - [ ] Poetry
 - [ ] Readme.md
-- [ ] Feature 3
+- [ ] .env Settings and Environment Variables 
+- [ ] async database
     - [ ] Nested Feature
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
@@ -223,6 +224,63 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Develop 
+### Poetry Dependency Management System
+### Creating a New Project
+
+```bash
+poetry new my-project
+```
+This command will create a new project structure with a `pyproject.toml` file where dependencies are stored.
+
+### Initializing an Existing Project
+```bash
+poetry init
+```
+
+This command initializes the project by asking for necessary parameters and creating a `pyproject.toml` file.
+
+### Adding a Package
+```bash
+poetry add requests
+```
+Adds the `requests` package to your project's list of dependencies.
+To add a package under the `[tool.poetry.dev-dependencies]` section in the `pyproject.toml` file, use the following command:
+```bash
+poetry add <package-name> --group dev
+```
+### Updating All Packages
+```bash
+poetry update
+```
+Updates all packages to their latest compatible versions.
+
+### Synchronizing Poetry with Virtual Environment
+```bash
+poetry install --sync
+```
+### Showing the Package Tree
+```bash
+poetry show --tree
+```
+### Removing a Package
+```bash
+poetry remove <package_name>
+```
+
+
+## PostgreSQL
+## Создание базы данных PostgreSQL через консоль 
+
+### Шаг 1: Подключение к PostgreSQL
+```bash
+sudo -u postgres psql
+```
+
+### Шаг 2: Создание новой базы данных
+```bash
+CREATE DATABASE database_name;
+```
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
