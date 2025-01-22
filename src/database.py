@@ -1,20 +1,24 @@
+import logging
 from typing import Annotated
 
 from fastapi import Depends
+from sqlalchemy import NullPool
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr
 
 from src.config import settings
 
-DATABASE_URL = settings.DATABASE_URL
-engine = create_async_engine(DATABASE_URL, echo=True)
+logging.basicConfig()
+logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
 
-# TODO Using multiple asyncio event loops for testing app
-# engine = create_async_engine(
-#     "postgresql+asyncpg://user:pass@host/dbname",
-#     poolclass=NullPool,
-# )
+if settings.MODE == "TEST":
+    DATABASE_URL = settings.TEST_DB_URL
+    DATABASE_PARAMS = {"poolclass": NullPool}
+else:
+    DATABASE_URL = settings.DATABASE_URL
+    DATABASE_PARAMS = {}
 
+
+engine = create_async_engine(DATABASE_URL, echo=False, **DATABASE_PARAMS)
 async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 
