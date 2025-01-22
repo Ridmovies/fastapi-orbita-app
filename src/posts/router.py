@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from src.posts.schemas import PostSchema
 from src.posts.service import PostService
 
-router = APIRouter(prefix="/post", tags=["post"])
+router = APIRouter()
 
 @router.get("")
 async def get_all_posts():
