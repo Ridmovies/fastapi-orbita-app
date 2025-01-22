@@ -163,7 +163,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Readme.md
 - [ ] .env Settings and Environment Variables 
 - [ ] async database
-    - [ ] Nested Feature
+    - [ ] Alembic
+- [ ] add example app "posts"
+
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
@@ -270,16 +272,53 @@ poetry remove <package_name>
 
 
 ## PostgreSQL
-## Создание базы данных PostgreSQL через консоль 
-
-### Шаг 1: Подключение к PostgreSQL
+## Creating a PostgreSQL database via console
+### Шаг 1: Connecting to PostgreSQL shell
 ```bash
 sudo -u postgres psql
 ```
 
-### Шаг 2: Создание новой базы данных
+### Шаг 2: Creating a new database
 ```bash
 CREATE DATABASE database_name;
+```
+
+
+## Alembic
+
+### Creating async an Environment
+```bash
+alembic init --template async alembic
+```
+
+### change env.py
+?async_fallback=True param for async database
+```
+config = context.config
+# if don't use --template async
+# config.set_main_option("sqlalchemy.url", f"{settings.DATABASE_URL}?async_fallback=True")
+config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+target_metadata = Base.metadata
+```
+Import models
+```
+from src.backend.dev.models import Song # noqa
+from src.backend.products.models import Product # noqa
+```
+
+### Generate first migration
+```bash
+alembic revision --autogenerate -m "initial migration"
+```
+
+### Apply generated migration to the database:
+```bash
+alembic upgrade head
+```
+
+### Rolls back the last applied migration.
+```bash
+alembic downgrade -1
 ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
