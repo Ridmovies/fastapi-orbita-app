@@ -159,13 +159,15 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Poetry
-- [ ] Readme.md
-- [ ] .env Settings and Environment Variables 
-- [ ] async database
-    - [ ] Alembic
-- [ ] example app "posts"
-- [ ] pytest
+- [x] Poetry
+- [x] Readme.md
+- [x] .env Settings and Environment Variables 
+- [x] async database
+    - [x] Alembic
+    - [x] database for tests
+- [x] example app "posts"
+- [ ] fix pytest mode
+
 
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
@@ -283,7 +285,6 @@ sudo -u postgres psql
 ```bash
 CREATE DATABASE database_name;
 ```
-
 
 ## Alembic
 
