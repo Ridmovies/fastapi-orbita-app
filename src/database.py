@@ -7,8 +7,8 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 
 from src.config import settings
 
-logging.basicConfig()
-logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
+# logging.basicConfig()
+# logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
 
 if settings.MODE == "TEST":
     DATABASE_URL = settings.TEST_DB_URL
@@ -17,12 +17,11 @@ else:
     DATABASE_URL = settings.DATABASE_URL
     DATABASE_PARAMS = {}
 
-
 engine = create_async_engine(DATABASE_URL, echo=False, **DATABASE_PARAMS)
 async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 
-async def get_session():
+async def get_session() -> AsyncSession:
     async with async_session() as session:
         yield session
 

@@ -4,6 +4,7 @@ from sqlalchemy import text
 from src.database import SessionDep, engine
 from src.models import Base
 
+
 router = APIRouter()
 
 @router.get("")

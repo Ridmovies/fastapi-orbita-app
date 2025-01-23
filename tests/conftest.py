@@ -1,7 +1,8 @@
 import os
+os.environ["MODE"] = "TEST"
+
 from typing import AsyncGenerator
 from httpx import ASGITransport, AsyncClient
-
 import pytest_asyncio
 
 from src.config import settings
@@ -9,12 +10,6 @@ from src.database import engine
 from src.main import app
 from src.models import Base
 
-@pytest_asyncio.fixture(scope="session", autouse=True)
-def set_test_mode():
-    print(f"MODE: {settings.MODE}")
-    settings.MODE = "TEST"
-    yield
-    settings.MODE = "TEST"
 
 @pytest_asyncio.fixture(scope="session", autouse=True)
 async def prepare_database():
