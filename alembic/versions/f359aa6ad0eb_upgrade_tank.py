@@ -1,8 +1,8 @@
 """upgrade tank
 
-Revision ID: 1c91e9d0e56c
+Revision ID: f359aa6ad0eb
 Revises: 
-Create Date: 2025-01-25 14:58:10.306040
+Create Date: 2025-01-25 19:03:27.449424
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '1c91e9d0e56c'
+revision: str = 'f359aa6ad0eb'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -23,6 +23,7 @@ def upgrade() -> None:
     op.create_table('branch',
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('type', sa.Enum('CT', 'TT', 'PT', 'LT', name='branchtype'), nullable=False),
+    sa.Column('comfort', sa.Integer(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
@@ -33,10 +34,13 @@ def upgrade() -> None:
     )
     op.create_table('tank',
     sa.Column('name', sa.String(), nullable=False),
+    sa.Column('level', sa.Integer(), nullable=False),
     sa.Column('price', sa.Integer(), nullable=False),
-    sa.Column('exp_to_next', sa.Integer(), nullable=True),
+    sa.Column('exp_to_next', sa.Integer(), nullable=False),
     sa.Column('available', sa.Boolean(), nullable=False),
+    sa.Column('pass_free', sa.Boolean(), nullable=False),
     sa.Column('battle_experience', sa.Integer(), nullable=False),
+    sa.Column('bon_equipment', sa.Integer(), nullable=False),
     sa.Column('branch_id', sa.Integer(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['branch_id'], ['branch.id'], ),
