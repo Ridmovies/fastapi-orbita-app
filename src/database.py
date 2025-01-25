@@ -17,7 +17,12 @@ else:
     DATABASE_URL = settings.DATABASE_URL
     DATABASE_PARAMS = {}
 
-engine = create_async_engine(DATABASE_URL, echo=False, **DATABASE_PARAMS)
+engine = create_async_engine(
+    'sqlite+aiosqlite:///database.db',
+    echo=False,
+    **DATABASE_PARAMS
+)
+# engine = create_async_engine(DATABASE_URL, echo=False, **DATABASE_PARAMS)
 async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 

@@ -120,30 +120,34 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ```
 
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
+## Installation
+### Installation for Linux with Virtual Environment
+*  #### Clone the repo
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
+   git clone https://github.com/Ridmovies/fastapi-app-skeleton.git
+   ```  
+   
+* #### Enter the application root folder: 
+``` cd fastapi-app-skeleton ```
+   
+* #### Create a virtual environment in the project's root folder:
+``` python3 -m venv .venv ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+* #### Activate the virtual environment:
+``` source .venv/bin/activate ```
 
+* #### Install dependencies for the production environment: 
+ ``` pip install -r requirements.txt ```
 
+* #### Change .env file
+1. Create postgres database or launch postgres docker 
+2. Rename '.env.template' to '.env'
+3. Replace the settings with your own
+
+* #### Start your application using Uvicorn in root folder :
+ ``` 
+uvicorn src.main:app --host 127.0.0.1 --port 8000 --reload 
+```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -166,7 +170,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
     - [x] Alembic
     - [x] database for tests
 - [x] example app "posts"
-- [ ] fix pytest mode
+- [x] fix pytest mode
+- [] Admin Panel
 
 
 
