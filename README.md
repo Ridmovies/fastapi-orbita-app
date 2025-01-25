@@ -169,9 +169,11 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] async database
     - [x] Alembic
     - [x] database for tests
+    - [x] sqlite+aiosqlite or postgresql+asyncpg switch
 - [x] example app "posts"
 - [x] fix pytest mode
-- [] Admin Panel
+- [x] Admin Panel
+
 
 
 
