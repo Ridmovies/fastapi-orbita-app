@@ -28,7 +28,7 @@ class Tank(Base):
     name: Mapped[str]
     level: Mapped[int] = mapped_column(default=6)
     price: Mapped[int] = mapped_column(default=0)
-    exp_to_next: Mapped[int] = mapped_column(default=0)
+    exp_cost: Mapped[int] = mapped_column(default=0)
     available: Mapped[bool] = mapped_column(default=True)
     pass_free: Mapped[bool] = mapped_column(default=False)
     battle_experience: Mapped[int] = mapped_column(default=0)
